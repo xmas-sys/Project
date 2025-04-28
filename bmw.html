@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMW M8 Competition</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        .specs-highlight {
+            background: #f8f9fa;
+            border-left: 5px solid #0066b2;
+            padding: 2rem;
+        }
+        .tech-table th {
+            background: #0066b2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html">← Back to Main</a>
+    </nav>
+
+    <main class="container mt-5">
+        <article>
+            <h1 class="display-4">BMW M8 Competition</h1>
+            <img src="assets/bmw.jpg" class="img-fluid my-4 rounded">
+
+            <section class="specs-highlight">
+                <h2>Technical Specifications</h2>
+                <table class="table tech-table">
+                    <tr><th>Engine</th><td>4.4L V8 TwinPower Turbo</td></tr>
+                    <tr><th>Power</th><td>617 HP @ 6,000 RPM</td></tr>
+                    <tr><th>Torque</th><td>553 lb-ft @ 1,800 RPM</td></tr>
+                </table>
+            </section>
+
+            <section class="mt-5">
+                <h3>Test Drive Request</h3>
+                <form class="bg-light p-4 rounded">
+                    <div class="form-group">
+                        <label>Preferred Date: <input type="date" class="form-control"></label>
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('article').hide().fadeIn(1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aston Martin Vantage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        .specs-highlight {
+            background: #f0f4f3;
+            border-left: 5px solid #005f4b;
+            padding: 2rem;
+        }
+        .luxury-feature {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #005f4b;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-success">
+        <a class="navbar-brand" href="index.html">← Back to Main</a>
+    </nav>
+
+    <main class="container mt-5">
+        <article>
+            <h1 class="display-4">Aston Martin Vantage</h1>
+            <img src="assets/aston.jpg" class="img-fluid my-4 rounded">
+
+            <section class="specs-highlight">
+                <h2>Technical Specifications</h2>
+                <table class="table">
+                    <tr><th>Engine</th><td>4.0L Twin-Turbo V8</td></tr>
+                    <tr><th>Power</th><td>503 HP @ 6,000 RPM</td></tr>
+                    <tr><th>0-60 mph</th><td>3.6s</td></tr>
+                </table>
+            </section>
+
+            <section class="mt-5">
+                <h3>Luxury Options</h3>
+                <form class="bg-light p-4 rounded">
+                    <div class="form-group">
+                        <label>Select Interior:</label>
+                        <select class="form-control">
+                            <option>Carbon Fiber</option>
+                            <option>Premium Leather</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success">Configure</button>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.luxury-feature').hover(
+                function() { $(this).css('transform', 'scale(1.02)'); },
+                function() { $(this).css('transform', 'scale(1)'); }
+            );
+        });
+    </script>
+</body>
+</html>

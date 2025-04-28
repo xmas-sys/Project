@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Supercars</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --bmw-blue: #0066b2;
+            --jaguar-red: #d90429;
+            --aston-green: #005f4b;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.8), url('assets/bg.jpg');
+            background-size: cover;
+            height: 70vh;
+        }
+
+        .car-card {
+            transition: transform 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .car-card:hover {
+            transform: translateY(-15px);
+        }
+
+        #liveDate {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .comparison-result {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Supercar Showcase</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-5">
+        <section class="row">
+            <!-- BMW Card -->
+            <article class="col-md-4 mb-4">
+                <div class="car-card card" onclick="window.location='bmw.html'">
+                    <img src="assets/bmw.jpg" class="card-img-top" alt="BMW M8">
+                    <div class="card-body">
+                        <h2>BMW M8 Competition</h2>
+                        <p class="text-muted">4.4L TwinPower Turbo V8</p>
+                        <div class="badge badge-primary">617 HP</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Jaguar Card -->
+            <article class="col-md-4 mb-4">
+                <div class="car-card card" onclick="window.location='jaguar.html'">
+                    <img src="assets/jaguar.jpg" class="card-img-top" alt="Jaguar F-Type">
+                    <div class="card-body">
+                        <h3>Jaguar F-Type R</h3>
+                        <p class="text-muted">5.0L Supercharged V8</p>
+                        <div class="badge badge-danger">575 HP</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Aston Martin Card -->
+            <article class="col-md-4 mb-4">
+                <div class="car-card card" onclick="window.location='aston.html'">
+                    <img src="assets/aston.jpg" class="card-img-top" alt="Aston Martin Vantage">
+                    <div class="card-body">
+                        <h4>Aston Martin Vantage</h4>
+                        <p class="text-muted">4.0L Twin-Turbo V8</p>
+                        <div class="badge badge-success">503 HP</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Comparison Tool -->
+        <section class="mt-5 bg-light p-4 rounded">
+            <h3>Compare Models</h3>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="compareBMW" value="BMW M8">
+                <label class="form-check-label" for="compareBMW">BMW M8</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="compareJaguar" value="Jaguar F-Type">
+                <label class="form-check-label" for="compareJaguar">Jaguar F-Type</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="compareAston" value="Aston Martin">
+                <label class="form-check-label" for="compareAston">Aston Martin</label>
+            </div>
+            <button class="btn btn-dark ml-3" onclick="compareCars()">Compare</button>
+            <div id="comparisonResult" class="comparison-result mt-3"></div>
+        </section>
+
+        <!-- Specifications Table -->
+        <table class="table table-striped mt-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Model</th>
+                    <th>0-60 mph</th>
+                    <th>Top Speed</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BMW M8 Competition</td>
+                    <td>3.0s</td>
+                    <td>190mph</td>
+                    <td>$146,000</td>
+                </tr>
+                <tr>
+                    <td>Jaguar F-Type R</td>
+                    <td>3.5s</td>
+                    <td>186mph</td>
+                    <td>$103,000</td>
+                </tr>
+                <tr>
+                    <td>Aston Martin Vantage</td>
+                    <td>3.6s</td>
+                    <td>195mph</td>
+                    <td>$142,000</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Contact Form -->
+        <form class="mt-5" id="contactForm">
+            <div class="form-group">
+                <label>Name: <input type="text" class="form-control" required></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Contact Us</button>
+        </form>
+    </main>
+
+    <!-- Dynamic Date -->
+    <div id="liveDate"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Car specifications data
+        const carData = {
+            "BMW M8": {
+                acceleration: "3.0s",
+                topSpeed: "190mph",
+                price: "$146,000",
+                engine: "4.4L TwinPower Turbo V8",
+                power: "617 HP"
+            },
+            "Jaguar F-Type": {
+                acceleration: "3.5s",
+                topSpeed: "186mph",
+                price: "$103,000",
+                engine: "5.0L Supercharged V8",
+                power: "575 HP"
+            },
+            "Aston Martin": {
+                acceleration: "3.6s",
+                topSpeed: "195mph",
+                price: "$142,000",
+                engine: "4.0L Twin-Turbo V8",
+                power: "503 HP"
+            }
+        };
+
+        // Comparison Calculator
+        function compareCars() {
+            const selected = [];
+            $('input[type="checkbox"]:checked').each(function() {
+                selected.push($(this).val());
+            });
+
+            if (selected.length === 0) {
+                $('#comparisonResult').html('<p class="text-danger">Please select at least one car to compare</p>');
+                return;
+            }
+
+            let result = '<div class="row">';
+
+            selected.forEach(car => {
+                const data = carData[car];
+                result += `
+                <div class="col-md-4">
+                    <h4>${car}</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>0-60 mph:</strong> ${data.acceleration}</li>
+                        <li class="list-group-item"><strong>Top Speed:</strong> ${data.topSpeed}</li>
+                        <li class="list-group-item"><strong>Price:</strong> ${data.price}</li>
+                        <li class="list-group-item"><strong>Engine:</strong> ${data.engine}</li>
+                        <li class="list-group-item"><strong>Power:</strong> ${data.power}</li>
+                    </ul>
+                </div>`;
+            });
+
+            result += '</div>';
+            $('#comparisonResult').html(result);
+        }
+
+        // Form Handling
+        $('#contactForm').submit(function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry!');
+            this.reset();
+        });
+
+        // Live Date
+        function updateDate() {
+            $('#liveDate').text(new Date().toLocaleString());
+        }
+        setInterval(updateDate, 1000);
+
+        // jQuery Animations
+        $(document).ready(function() {
+            $('.car-card').hover(
+                function() { $(this).css('transform', 'scale(1.05)'); },
+                function() { $(this).css('transform', 'scale(1)'); }
+            );
+        });
+    </script>
+</body>
+</html>
